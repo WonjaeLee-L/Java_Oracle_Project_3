@@ -199,6 +199,7 @@ public class IdeaDAO {
 				String sql="select * from ideabank where "+
 						"title like '%"+searchW+"%'";
 				System.out.println(sql);
+				// psmt.setString(1,searchW)는 안되고 위처럼 직접 입력해야 됨
 				PreparedStatement psmt = conn.prepareStatement(sql);
 				ResultSet rs =psmt.executeQuery();
 				//Resultset은 테이블 형식으로 가져온다고 이해합니다.
