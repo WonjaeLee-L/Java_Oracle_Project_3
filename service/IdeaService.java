@@ -113,7 +113,13 @@ public class IdeaService {
 	}
 
 	private void ideaSearch() { // 검색 쿼리
-
+		Scanner in = new Scanner(System.in);
+		System.out.println("검색어를 입력 하세요");
+		String sw = in.nextLine();
+		ArrayList<IdeaDTO> idealist = ideadao.select(sw);
+		for(IdeaDTO t : idealist) {
+			System.out.println(t.toString());
+		}
 	}
 
 	private void ideaTitleList() { // 제목과 번호보기
