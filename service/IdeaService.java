@@ -17,8 +17,6 @@ public class IdeaService {
 	// generate constructor from superclass (source우클릭 생성자 자동 생성)
 	public IdeaService() {
 		menu();
-		// TODO Auto-generated constructor stub
-
 	}
 
 	private void menu() {
@@ -54,18 +52,18 @@ public class IdeaService {
 	}
 
 	private void ideaAdd() { // 추가 쿼리 >> insert
-		System.out.println("신규 아이디어 등록");
-		Scanner in = new Scanner(System.in);
-		System.out.println("제목 입력");
-		String title = in.nextLine();
-		System.out.println("내용 입력");
-		String content = in.nextLine();
-		System.out.println("작성자 입력<작성자는 수정 불가>");
-		String writer = in.nextLine();
+//		System.out.println("신규 아이디어 등록");		>> MainFrame에서 입력 받아 DB 업로드 기능을 추가하여 없어도 됨
+//		Scanner in = new Scanner(System.in);
+//		System.out.println("제목 입력");
+//		String title = in.nextLine();
+//		System.out.println("내용 입력");
+//		String content = in.nextLine();
+//		System.out.println("작성자 입력<작성자는 수정 불가>");
+//		String writer = in.nextLine();
 		IdeaDTO ideadto = new IdeaDTO();
-		ideadto.setTitle(title);
-		ideadto.setContent(content);
-		ideadto.setWriter(writer);
+//		ideadto.setTitle(title);
+//		ideadto.setContent(content);
+//		ideadto.setWriter(writer);
 		// dao 객체에게 ideadto 객체의 주소를 전달
 		// dao에게 insert 작업 요청, 매개변수값으로 ideadto
 		ideadao.insert(ideadto);
@@ -117,7 +115,7 @@ public class IdeaService {
 		System.out.println("검색어를 입력 하세요");
 		String sw = in.nextLine();
 		ArrayList<IdeaDTO> idealist = ideadao.select(sw);
-		for(IdeaDTO t : idealist) {
+		for (IdeaDTO t : idealist) {
 			System.out.println(t.toString());
 		}
 	}

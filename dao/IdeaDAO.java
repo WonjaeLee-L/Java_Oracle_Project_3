@@ -191,20 +191,19 @@ public class IdeaDAO {
 			}
 		}
 	}
-	
-	public ArrayList<IdeaDTO> select(String searchW){
+
+	public ArrayList<IdeaDTO> select(String searchW) {
 		ArrayList<IdeaDTO> ilist = new ArrayList<IdeaDTO>();
-		if(conn()) {
+		if (conn()) {
 			try {
-				String sql="select * from ideabank where "+
-						"title like '%"+searchW+"%'";
+				String sql = "select * from ideabank where " + "title like '%" + searchW + "%'";
 				System.out.println(sql);
 				// psmt.setString(1,searchW)는 안되고 위처럼 직접 입력해야 됨
 				PreparedStatement psmt = conn.prepareStatement(sql);
-				ResultSet rs =psmt.executeQuery();
-				//Resultset은 테이블 형식으로 가져온다고 이해합니다.
-				while(rs.next()) {  //next()메서드는 rs에서 참조하는 테이블에서
-					                // 튜플을 순차적으로 하나씩 접근하는 메서드
+				ResultSet rs = psmt.executeQuery();
+				// Resultset은 테이블 형식으로 가져온다고 이해합니다.
+				while (rs.next()) { // next()메서드는 rs에서 참조하는 테이블에서
+									// 튜플을 순차적으로 하나씩 접근하는 메서드
 					IdeaDTO iTemp = new IdeaDTO();
 					iTemp.setTitle(rs.getString("title"));
 					iTemp.setNum(rs.getInt("num"));
@@ -213,10 +212,11 @@ public class IdeaDAO {
 					iTemp.setIndate(rs.getString("indate"));
 					ilist.add(iTemp);
 				}
-			} catch (SQLException e) {e.printStackTrace();}
-		}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return ilist;
-	}	
-	
+	}
 
 }
