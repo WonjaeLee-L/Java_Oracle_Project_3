@@ -72,6 +72,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		// 리스너 등록
 		btn.addActionListener(this);
+		// 이거 넣으면 엔터로 입력 된다. >> 엔터 액션 인식
 		input.addActionListener(this);
 
 		// true면 화면에 보이게, false는 안보이게(프로그램 종료는 아님)
@@ -98,11 +99,13 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	@Override // *** 메서드 재정의(add unimplemented methods) >> 액션 리스너가 이 메서드를 처리. 개발하고자 하는 동작을 구현
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btn || e.getSource() == input) { // 발생한 이벤트가 btn이라면 아래를 실행하라
+		if (e.getSource() == btn || e.getSource() == input) { // 발생한 이벤트가 btn, 또는 input 이라면 아래를 실행하라
 //			System.out.println("버튼이 클릭 됨");
 			String t = input.getText();
+			// 이벤트 발생(엔터 액션) >> input에서 text를 가져와서 문자열 t에 저장
 //			System.out.println("입력하신 글은 : " + t);
-
+			
+			// 리셋
 			input.setText("");
 
 			// 리스트에 내용 등록
