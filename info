@@ -1,0 +1,43 @@
+아이디어 제안하기 : 아이디어번호(시퀀스로 자동생성), 제목, 설명, 작성자
+아이디어 수정하기 : 작성자는 수정할 수 없음.  
+                         아이디어 수정 할 때는 모든 제목이 먼저 다 보여진다. 제목 앞에는 번호가 있다.
+                         번호를 입력해서 해당 정보를 수정한다. 이때 작성자는 수정 불가
+아이디어 삭제 하기 : 삭제시 모든 제목이 먼저 다 보여진다. 제목 앞에는 번호가 있다.
+                         번호를 입력하셔 해당 데이터 삭제한다.
+아이디어 전체보기 :
+제목으로 검색하기 : 검색어가 포함된 모든 아이디어는 다 볼 수 있다.
+--------------------------------------------------------------------------------------
+** 프로젝트 구조 디자인
+1. project name : openIdea - 버전 확인 1.8 - 라이브러리 추가 odbc6.jar		ok
+2. package 구조
+	main	// 프로그램 시작	ok
+	dao		// 오라클 데이터베이스 CRUD
+	dto		// 데이터 전송 객체 - 만들기 위해 먼저 table 작업 - sqlPlus		ok
+	service	// 메뉴와 각 메뉴에 대한 처리	- 많이 고려해야하는 부분		ok
+	
+	dto 생성 전 >> 테이블, 시퀀스 생성		ok
+	* 테이블 생성
+	create table ideabanck(
+	num number(3) primary key,
+	title varchar2(10),
+	content varchar2(10),
+	wirter varchar2(6),
+	indate timestamp default sysdate);
+	
+	* 시퀀스 생성
+	create sequence ideabank_seq;
+	
+	
+	
+3. ERD - 샘플은 테이블이 하나이므로 ERD 생략,
+   테이블 구조 : 테이블 명 : ideabank (num, title, content, writer, indate)
+   			  시퀀스명 : ideabank_seq
+ 
+4. 주요기능
+		service			dao query
+   4-1. 제안하기	-	insert into ideabank values (ideabank_seq.nextval, ?,?,?,default)
+   4-2. 수정하기	-	update ideabank set title=?, content=? where num=?
+   4-3. 삭제하기	-	delete from ideabank where num=?
+   4-4. 검색하기	-	select * from ideabank where title like '%?%'
+   4-5. 전체보기	-	select * from ideabank 
+   
